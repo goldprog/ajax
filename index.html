@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的ajax插件</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <button id="get">发送get请求</button>
+    <button id="post">发送post请求</button>
+    <button id="jsonp">发送jsonp请求</button>
+    <div id="content"></div>
+    <script src="ajax.js"></script>
+    <script>
+      post.onclick = function() {
+        ajax({
+          url: 'http://localhost:3050/api',
+          type: 'post',
+          data: {
+            username: 'goldprog',
+            password: '123456'
+          },
+          success: function(res) {
+            content.innerHTML = JSON.stringify(res.data)
+          }
+        })
+      }
+
+      get.onclick = function() {
+        ajax({
+          url: 'http://localhost:3050/getdata',
+          type: 'get',
+          data: {
+            username_get: 'goldprog',
+            password_get: '123456'
+          },
+          success: function(res) {
+            content.innerHTML = JSON.stringify(res.data)
+          }
+        })
+      }
+
+      jsonp.onclick = function() {
+        ajax({
+          url: 'http://localhost:3050/jsonp',
+          jsonp: 'jsonpCallback',
+          time: 3000,
+          data: {
+            name: 'jsonp',
+            age: 18
+          },
+          success: function (res) {
+            content.innerHTML = JSON.stringify(res.data)
+          },
+          fail: function(res) {
+            alert(res)
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
