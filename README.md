@@ -1,5 +1,5 @@
 # ajax
-我封装的一个ajax插件，本插件支持jsonp调用
+自己封装的一个ajax插件，本插件支持jsonp调用
 
 # API
 
@@ -18,4 +18,13 @@
     fail: function(res) { // 失败的回调
     }
   })
+```
+
+# 如果您要运行这个实例 
+
+请先运行服务端代码
+
+```
+npm install
+node server.js
 ```
